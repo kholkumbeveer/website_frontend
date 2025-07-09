@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Design</title>
+    <style>
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+      }
+      
+      .card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+      }
+      
+      .card:hover {
+        transform: translateY(-5px);
+      }
+      
+      .card-image img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      
+      .card-content {
+        padding: 1.5rem;
+      }
+      
+      .btn {
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+      }
+    </style>
+</head>
+<body>
+    <div id="card-container" class="card-container">
+      <!-- Cards will be dynamically added here -->
+    </div>
+    <script>
+      const data = [
+        { 
+          title: "Creative Design", 
+          description: "Modern UI with clean aesthetics", 
+          image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ef3aa20-c6e8-4dc4-9da9-580570596088.png" 
+        },
+        { 
+          title: "Web Development", 
+          description: "Responsive websites for all devices", 
+          image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/98940f83-7f06-4e1a-90f0-ff7acbad987e.png" 
+        },
+        { 
+          title: "Mobile First", 
+          description: "Optimized for mobile experiences", 
+          image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/96cb5771-57c5-4b42-8faf-e548c4746adb.png" 
+        }
+      ];
+
+      document.getElementById('card-container').innerHTML = data.map(item => `
+        <div class="card">
+          <div class="card-image">
+            <img src="${item.image}" alt="${item.title}">
+          </div>
+          <div class="card-content">
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <button class="btn">Learn More</button>
+          </div>
+        </div>
+      `).join('');
+    </script>
+</body>
+</html>

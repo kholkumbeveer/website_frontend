@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props Example</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .parent {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .parent-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .child {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #3498db;
+        }
+
+        .child-title {
+            color: #3498db;
+            margin-top: 0;
+        }
+
+        .prop-value {
+            background-color: #e8f4fc;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+
+        .prop-container {
+            margin-bottom: 15px;
+        }
+
+        .prop-label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <h1 class="parent-title">Parent Component</h1>
+        
+        <!-- Child component with props passed as data attributes -->
+        <div class="child" 
+             data-name="John Doe" 
+             data-age="30" 
+             data-occupation="Web Developer">
+            <h2 class="child-title">Child Component</h2>
+            <div class="prop-container">
+                <span class="prop-label">Name:</span>
+                <span class="prop-value" id="name-value"></span>
+            </div>
+            <div class="prop-container">
+                <span class="prop-label">Age:</span>
+                <span class="prop-value" id="age-value"></span>
+            </div>
+            <div class="prop-container">
+                <span class="prop-label">Occupation:</span>
+                <span class="prop-value" id="occupation-value"></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // This simulates how props work in React
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the child component
+            const childComponent = document.querySelector('.child');
+            
+            // Extract the props from data attributes
+            const props = {
+                name: childComponent.dataset.name,
+                age: childComponent.dataset.age,
+                occupation: childComponent.dataset.occupation
+            };
+            
+            // Render the props in the child component
+            document.getElementById('name-value').textContent = props.name;
+            document.getElementById('age-value').textContent = props.age;
+            document.getElementById('occupation-value').textContent = props.occupation;
+            
+            // You could also create a more formal component structure:
+            class ChildComponent {
+                constructor(props) {
+                    this.props = props;
+                    this.render();
+                }
+                
+                render() {
+                    // This would be more dynamic in a real implementation
+                    console.log('Child component rendered with props:', this.props);
+                }
+            }
+            
+            // Initialize the child component with props
+            new ChildComponent(props);
+        });
+    </script>
+</body>
+</html>
